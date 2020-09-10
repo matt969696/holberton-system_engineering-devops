@@ -4,9 +4,9 @@
 .SH NAME
 eniac \- the first electronic general-purpose digital computer. 
 .SH SYNOPSIS
-eniac [USERNAME]
+eniac
 .SH DESCRIPTION
-Eniac was Turing-complete. and able to solve \"a large class of numerical problems\" through reprogramming.
+Eniac was Turing-complete, and able to solve "a large class of numerical problems" through reprogramming.
 .SH OPTIONS
 eniac does not take any options.
 .SH SEE ALSO 
