@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# This script is displaying all hours and minutes till 12:59
+
+hr=0
+min=0
+
+while [ $hr -le 12 ]
+do
+    if [ $min -eq 0 ]
+    then
+	echo "Hour: $hr"
+    else
+	echo "$min"
+    fi
+
+    if [ $min -le 58 ]
+    then
+	let "min++"
+    else
+	let "min=0"
+	let "hr++"
+    fi
+done
