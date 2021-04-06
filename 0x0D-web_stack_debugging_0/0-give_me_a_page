@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Task 0 0x0D
+
+sudo apt-get update
+sudo apt-get -y install apache2
+sudo service apache2 start
