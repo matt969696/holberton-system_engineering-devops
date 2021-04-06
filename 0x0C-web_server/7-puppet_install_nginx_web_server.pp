@@ -8,7 +8,7 @@ package {'nginx':
 file {'/var/www/html/index.html':
   ensure  => present,
   path    => '/var/www/html/index.html',
-  content => 'Holberton School for the win yeah!\n',
+  content => 'Holberton School\n',
 }
 
 file_line { 'redirect_me':
