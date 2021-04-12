@@ -35,5 +35,4 @@ file_line { 'addHeader':
 service { 'nginx':
   ensure  => running,
   require => Package['nginx'],
-  subscribe  => [File_line['redirect_me'], File_line['add_header'],
 }
