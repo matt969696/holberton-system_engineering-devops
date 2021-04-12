@@ -30,6 +30,5 @@ service { 'nginx':
   enable     => true,
   hasrestart => true,
   require    => Package['nginx'],
-  subscribe  => File_line['redirect_me'],
-  subscribe  => File_line['add_header'],
+  subscribe  => [File_line['redirect_me'], File_line['add_header']],
 }
