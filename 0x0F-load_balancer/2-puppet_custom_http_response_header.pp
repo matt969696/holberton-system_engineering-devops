@@ -12,7 +12,7 @@ package {'nginx':
 file {'/var/www/html/index.html':
   ensure  => 'present',
   path    => '/var/www/html/index.html',
-  content => 'Holberton School\n',
+  content => 'Holberton School',
   require => Package['nginx']
 }
 
@@ -34,8 +34,6 @@ file_line { 'add_header':
 
 service { 'nginx':
   ensure     => running,
-  enable     => true,
-  hasrestart => true,
   require    => Package['nginx'],
   subscribe  => [File_line['redirect_me'], File_line['add_header'],
 }
