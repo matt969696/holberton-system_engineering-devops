@@ -5,10 +5,13 @@ exec { 'update':
 
 package { 'nginx':
   ensure  => installed,
+  name    => 'nginx',
   require => Exec['update'],
 }
 
 file { '/var/www/html/index.html':
+  ensure  => 'present',
+  path    => '/var/www/html/index.html',
   content => 'Holberton School',
   require => Package['nginx'],
 }
