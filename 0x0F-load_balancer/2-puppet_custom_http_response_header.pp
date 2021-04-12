@@ -16,7 +16,7 @@ file { '/var/www/html/index.html':
   require => Package['nginx'],
 }
 
-file_line { 'redirect':
+file_line { 'redirect_me':
   ensure  => 'present',
   path    => '/etc/nginx/sites-available/default',
   after   => 'listen 80 default_server;',
@@ -35,4 +35,5 @@ file_line { 'addHeader':
 service { 'nginx':
   ensure  => running,
   require => Package['nginx'],
+  subscribe  => [File_line['redirect_me'], File_line['add_header'],
 }
