@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Task 0 0x0D
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
+sudo sed -i 's,pid /run/nginx.pid,pid /run/nginxx.pid,' /etc/nginx/nginx.conf

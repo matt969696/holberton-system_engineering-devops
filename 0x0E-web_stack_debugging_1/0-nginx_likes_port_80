@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Task 0 0x0D
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
