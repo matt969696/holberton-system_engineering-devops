@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# installation of ufw firewall
+sudo ufw default deny incoming
+sudo ufw allow ssh
+sudo ufw allow https
+sudo ufw allow http
+sudo ufw enable
