@@ -8,12 +8,12 @@ if __name__ == "__main__":
     users = requests.get(url + "users").json()
 
     with open("todo_all_employees.json", "w") as jsonfile:
-        for u in users :
+        for u in users:
             json.dump({
                 u.get("id"): [{
                     "task": t.get("title"),
                     "completed": t.get("completed"),
                     "username": u.get("username")
-            } for t in requests.get(url + "todos",
-                                    params={"userId": u.get("id")}).json()]
+                } for t in requests.get(url + "todos",
+                                        params={"userId": u.get("id")}).json()]
             }, jsonfile)
