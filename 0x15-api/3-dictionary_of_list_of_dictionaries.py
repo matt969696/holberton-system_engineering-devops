@@ -15,15 +15,13 @@ def main():
     myDict = {}
     with open("todo_all_employees.json", 'w') as outfile:
         for employee in listemp:
-            empl = requests.get(site + str(employee["id"])).json()['username']
             taskl = requests.get(site + str(employee["id"]) + "/todos").json()
             mylist = []
 
             for task in taskl:
-                taskdic = {}
-                taskdic["task"] = task['title']
-                taskdic["completed"] = task['completed']
-                taskdic["username"] = empl
+                taskdic = {"task": task['title'],
+                           "completed": task['completed'],
+                           "username": employee["username"]}
                 mylist.append(taskdic)
 
             json.dump({employee["id"]: mylist}, outfile)
