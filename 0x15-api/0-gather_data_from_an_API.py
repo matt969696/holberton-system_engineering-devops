@@ -1,25 +1,36 @@
 #!/usr/bin/python3
-"""
-Module that, using this REST API, for a given employee ID,
-returns information about his/her TODO list progress
-"""
+"""Gather data from an API"""
+import json
 import requests
-import sys
+from sys import argv
 
 
 def main():
-    """ Returns employee information TODO """
-    site = "https://jsonplaceholder.typicode.com/users/"
-    empl = requests.get(site + sys.argv[1]).json()['name']
+    """main function"""
+    if len(argv) < 2:
+        return
 
-    json = requests.get(site + sys.argv[1] + "/todos").json()
-    nb = len(json)
-    c = sum(task.get('completed') is True for task in json)
-    print("Employee {} is done with tasks({}/{}):".format(empl, c, nb))
+    userUrl = "https://jsonplaceholder.typicode.com/users/{}".format(argv[1])
+    todoUrl = "https://jsonplaceholder.typicode.com/users/{}/todos".format(
+        argv[1])
 
-    for task in json:
-        if task.get('completed') is True:
-            print("\t {}".format(task.get('title')))
+    userReq = requests.get(userUrl)
+    user = json.loads(userReq.text)
+    todoReq = requests.get(todoUrl)
+    todo = json.loads(todoReq.text)
+
+    numTasks = len(todo)
+    numComplete = 0
+    for task in todo:
+        if task['completed']:
+            numComplete += 1
+
+    print("Employee {} is done with tasks({}/{}):".format(user['name'],
+                                                          numComplete,
+                                                          numTasks))
+    for task in todo:
+        if task['completed']:
+            print("\t {}".format(task['title']))
 
 
 if __name__ == "__main__":
