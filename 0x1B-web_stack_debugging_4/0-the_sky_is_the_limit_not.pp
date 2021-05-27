@@ -1,11 +1,12 @@
 # Task 0
 
-exec { 'increase-ulimit':
-  command => 'sed -i "s/15/4096/" /etc/default/nginx',
-  path    => '/usr/local/bin/:/bin/'
-} ->
+file {'/etc/default/nginx':
+  ensure  => present,
+  path    =>  '/etc/default/nginx',
+  content => 'ULIMIT="-n 4096"',
+}
 
-exec { 'nginx-restart':
-  command => 'sudo nginx restart',
-  path    => '/etc/init.d/'
+-> exec {'nginx':
+  command => 'sudo service nginx restart',
+  path    => ['/bin', '/usr/bin'],
 }
